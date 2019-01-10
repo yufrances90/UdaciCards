@@ -4,10 +4,9 @@ import {
 } from 'react-native';
 
 import globalStyles from './styles/styles';
-
-import PDeckList from './pages/PDeckList';
-
 import { generateAndSaveInitialData } from './utils/utility';
+
+import PQuiz from './pages/PQuiz';
 
 export default class App extends Component {
 
@@ -32,7 +31,8 @@ export default class App extends Component {
 
         return (
           <View style={globalStyles.centeredContainer}>
-            <PDeckList decks={decks} questions={questions} />
+            {/* <PDeckList decks={decks} questions={questions} /> */}
+            <PQuiz />
           </View>
         );
     }
