@@ -7,6 +7,8 @@ import {
     TouchableOpacity 
 } from 'react-native';
 
+import globalStyles from '../styles/styles';
+
 export default class NewQuestion extends Component {
     render() {
         return (
@@ -19,9 +21,9 @@ export default class NewQuestion extends Component {
                   placeholder="Enter Your Expected Answer Here..."
                 />
                 <TouchableOpacity
-                    style={styles.submitBtn}
+                    style={globalStyles.submitBtn}
                 >
-                    <Text style={styles.submitBtnText}>Submit</Text>
+                    <Text style={globalStyles.submitBtnText}>Submit</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -29,26 +31,6 @@ export default class NewQuestion extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    submitBtn: {
-        marginTop: 40,
-        borderColor: '#000066',
-        borderStyle: 'solid',
-        borderWidth: 1,
-        paddingLeft: 40,
-        paddingRight: 40,
-        paddingTop: 20,
-        paddingBottom: 20,
-        borderRadius: 5
-    },
-    submitBtnText: {
-        color: '#000066'
-    },
     textInput: {
         fontSize: 25
     }
