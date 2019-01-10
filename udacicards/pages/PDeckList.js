@@ -8,10 +8,14 @@ import {
 import globalStyles from '../styles/styles';
 
 export default class PDeckList extends Component {
+
     render() {
+
+        const { decks } = this.props;
+
         return (
             <View>
-                <Text>Hello from PDeckList</Text>
+                <Text>{Object.keys(decks).length}</Text>
             </View>
         );
     }
