@@ -9,7 +9,7 @@ import {
 
 import globalStyles from '../styles/styles';
 
-export default class NewQuestion extends Component {
+export default class PNewQuestion extends Component {
     render() {
         return (
             <View style={styles.container}>

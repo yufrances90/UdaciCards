@@ -9,7 +9,7 @@ import {
 
 import globalStyles from '../styles/styles';
 
-export default class NewDeck extends Component {
+export default class PNewDeck extends Component {
     render() {
         return (
             <View>

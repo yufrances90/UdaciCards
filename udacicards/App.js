@@ -5,13 +5,13 @@ import {
 
 import globalStyles from './styles/styles';
 
-import NewDeck from './pages/NewDeck';
+import PIndividualDeck from './pages/PIndividualDeck';
 
 export default class App extends Component {
     render() {
         return (
           <View style={globalStyles.centeredContainer}>
-            <NewDeck />
+            <PIndividualDeck />
           </View>
         );
     }
