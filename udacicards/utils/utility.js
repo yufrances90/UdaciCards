@@ -3,11 +3,18 @@ import {
     DECKS 
 } from './constants';
 
-export const generateUID  = () => {
+import {
+    saveItem,
+    getItem
+} from './storageUtils';
+
+import { STORAGE_KEYS } from './constants';
+
+const generateUID  = () => {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
-export const generateInitialData = () => {
+const generateInitialData = () => {
 
     let questions = {};
     let decks = {}
@@ -47,5 +54,13 @@ export const generateInitialData = () => {
         decks,
         questions
     };
+}
+
+export const generateAndSaveInitialData = () => {
+
+    const { decks, questions } = generateInitialData();
+
+    saveItem(STORAGE_KEYS.DECKS, decks);
+    saveItem(STORAGE_KEYS.QUESTIONS, questions);
 }
  
