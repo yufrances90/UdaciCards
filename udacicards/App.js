@@ -5,13 +5,13 @@ import {
 
 import globalStyles from './styles/styles';
 
-import PIndividualDeck from './pages/PIndividualDeck';
+import PDeckList from './pages/PDeckList';
 
 export default class App extends Component {
     render() {
         return (
           <View style={globalStyles.centeredContainer}>
-            <PIndividualDeck />
+            <PDeckList />
           </View>
         );
     }
