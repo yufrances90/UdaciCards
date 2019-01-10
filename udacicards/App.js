@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { 
     StyleSheet, 
-    Text, 
     View 
 } from 'react-native';
-import NewDeck from './NewDeck';
+
+import NewQuestion from './pages/NewQuestion';
 
 export default class App extends Component {
     render() {
         return (
           <View style={styles.container}>
-            <NewDeck />
+            <NewQuestion />
           </View>
         );
     }
