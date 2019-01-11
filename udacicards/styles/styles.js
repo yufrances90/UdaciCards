@@ -42,6 +42,19 @@ const globalStyles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 30
     }, 
+    button: {
+        borderColor: '#000066',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        paddingLeft: 40,
+        paddingRight: 40,
+        paddingTop: 20,
+        paddingBottom: 20,
+        borderRadius: 5
+    },
+    buttonText: {
+        textAlign: 'center'
+    }
 });
 
 export default globalStyles;
