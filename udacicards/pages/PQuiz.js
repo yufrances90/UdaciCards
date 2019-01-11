@@ -11,7 +11,7 @@ import QuizEnd from '../components/QuizEnd';
 export default class PQuiz extends Component {
     render() {
         return (
-            <View>
+            <View style={globalStyles.centeredContainer}>
                 <QuizEnd />
             </View>
         );

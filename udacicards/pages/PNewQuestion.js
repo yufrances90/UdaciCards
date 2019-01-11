@@ -12,7 +12,7 @@ import globalStyles from '../styles/styles';
 export default class PNewQuestion extends Component {
     render() {
         return (
-            <View style={styles.container}>
+            <View style={globalStyles.centeredContainer}>
                 <TextInput 
                   placeholder="Enter New Question Here..."
                   style={styles.textInput}

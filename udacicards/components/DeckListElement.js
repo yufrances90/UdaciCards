@@ -27,6 +27,7 @@ export default class DeckListElement extends Component {
 
 const styles = StyleSheet.create({ 
     deckDetails: {
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: 12
     }
 });

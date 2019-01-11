@@ -3,18 +3,36 @@ import {
     StyleSheet, 
     Text, 
     View,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from 'react-native';
 
 import globalStyles from '../styles/styles';
+
+import { generateAndSaveInitialData } from '../utils/utility';
 
 import DeckListElement from '../components/DeckListElement';
 
 export default class PDeckList extends Component {
 
+    state = {
+        decks: {},
+        questions: {}
+    }
+
+    componentDidMount() {
+
+        const { decks, questions } = generateAndSaveInitialData();
+
+        this.setState({
+            decks,
+            questions
+        });
+    }
+
     render() {
 
-        const { decks } = this.props;
+        const { decks } = this.state;
 
         return (
            <View style={styles.container}>
@@ -24,15 +42,21 @@ export default class PDeckList extends Component {
                             
                             const deckObj = decks[deck];
 
-                            return <DeckListElement 
-                                key={deckObj.id} 
-                                deck={deckObj}
-                            /> 
+                            return (
+                               <TouchableOpacity key={deckObj.id}>
+                                    <DeckListElement 
+                                        key={deckObj.id} 
+                                        deck={deckObj}
+                                    /> 
+                               </TouchableOpacity>
+                            );
                         })}
                     </View>
-                    <View style={styles.diffDeckElement}>
-                        <Text style={styles.diffDeckSmallTitle}>Add New Deck</Text>
-                    </View>
+                    <TouchableOpacity>
+                        <View style={styles.diffDeckElement}>
+                            <Text style={styles.diffDeckSmallTitle}>Add New Deck</Text>
+                        </View>
+                    </TouchableOpacity>
                </ScrollView>
            </View>
         );
@@ -41,6 +65,7 @@ export default class PDeckList extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        ...globalStyles.centeredContainer,
         paddingTop: 50,
         paddingBottom: 50
     },

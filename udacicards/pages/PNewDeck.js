@@ -12,7 +12,7 @@ import globalStyles from '../styles/styles';
 export default class PNewDeck extends Component {
     render() {
         return (
-            <View>
+            <View style={globalStyles.centeredContainer}>
                 <Text style={styles.title}>What is the title of your new deck?</Text>
                 <TextInput 
                   placeholder="Enter New Deck Title Here..."

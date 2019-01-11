@@ -9,25 +9,26 @@ import {
 import globalStyles from '../styles/styles';
 
 export default class PIndividualDeck extends Component {
+
     render() {
         return (
-            <View>
+            <View style={globalStyles.centeredContainer}>
                 <View>
                     <Text style={styles.deckTitle}>
-                        Title of Deck
+                        JavaScript
                     </Text>
                     <Text style={styles.deckDetail}>
-                        # cards
+                        3 cards
                     </Text>
                 </View>
                 <View>
-                    <TouchableOpacity style={globalStyles.submitBtn}>
-                        <Text style={globalStyles.submitBtnText}>
+                    <TouchableOpacity style={styles.startBtn}>
+                        <Text style={styles.startBtnText}>
                             Start Quiz
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.lastBtn}>
-                        <Text style={globalStyles.submitBtnText}>
+                    <TouchableOpacity style={styles.addBtn}>
+                        <Text style={styles.addBtnText}>
                             Add New Question
                         </Text>
                     </TouchableOpacity>
@@ -43,11 +44,26 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     deckDetail: {
-        fontSize: 20,
-        color: '#8d8d8d'
+        fontSize: 12,
+        color: '#8d8d8d',
+        textAlign: 'center'
     },
-    lastBtn: {
-        ...globalStyles.submitBtn,
-        marginTop: 5
-    } 
+    startBtn: {
+        ...globalStyles.button,
+        marginTop: 40,
+        borderColor: '#006666'
+    },
+    startBtnText: {
+        ...globalStyles.buttonText,
+        color: '#006666'
+    },
+    addBtn: {
+        ...globalStyles.button,
+        marginTop: 10,
+        borderColor: '#ff0000'
+    },
+    addBtnText: {
+        ...globalStyles.buttonText,
+        color: '#ff0000'
+    }
 });

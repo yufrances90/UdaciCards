@@ -34,13 +34,13 @@ const globalStyles = StyleSheet.create({
         paddingLeft: 40,
         paddingRight: 40,
         marginBottom: 10,
-        width: 300,
+        width: 320,
         height: 180
     },
     deckSmallTitle: {
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: 30
+        fontSize: 28
     }, 
     button: {
         borderColor: '#000066',
