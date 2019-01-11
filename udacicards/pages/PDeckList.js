@@ -4,7 +4,7 @@ import {
     Text, 
     View,
     ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
 } from 'react-native';
 
 import globalStyles from '../styles/styles';
@@ -30,6 +30,15 @@ export default class PDeckList extends Component {
         });
     }
 
+    handlePress(event, deckObj) {
+
+        console.log("Selected deck object: ", deckObj);
+
+        this.props.navigation.navigate('IDeck', {
+            deck: deckObj
+        });
+    }
+
     render() {
 
         const { decks } = this.state;
@@ -43,12 +52,16 @@ export default class PDeckList extends Component {
                             const deckObj = decks[deck];
 
                             return (
-                               <TouchableOpacity key={deckObj.id}>
-                                    <DeckListElement 
-                                        key={deckObj.id} 
-                                        deck={deckObj}
-                                    /> 
-                               </TouchableOpacity>
+                               <View id={deckObj.id} key={deckObj.id}>
+                                   <TouchableOpacity 
+                                        onPress={event => this.handlePress(event, deckObj)}
+                                    >
+                                        <DeckListElement 
+                                            key={deckObj.id} 
+                                            deck={deckObj}
+                                        /> 
+                                </TouchableOpacity>
+                               </View>
                             );
                         })}
                     </View>

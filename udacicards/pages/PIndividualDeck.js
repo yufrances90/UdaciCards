@@ -3,22 +3,47 @@ import {
     StyleSheet, 
     Text, 
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    ActivityIndicator
 } from 'react-native';
 
 import globalStyles from '../styles/styles';
 
 export default class PIndividualDeck extends Component {
 
+    state = {
+        selectedDeck: null
+    }
+
+    componentDidMount() {
+
+        const { navigation } = this.props;
+
+        const selectedDeck = navigation.getParam('deck', null);
+
+        console.log(selectedDeck);
+
+        this.setState({
+            selectedDeck
+        })
+    }
+
     render() {
+
+        const { selectedDeck } = this.state;
+
+        if (!selectedDeck) {
+           return <ActivityIndicator />
+        }
+
         return (
             <View style={globalStyles.centeredContainer}>
                 <View>
                     <Text style={styles.deckTitle}>
-                        JavaScript
+                        {selectedDeck.title}
                     </Text>
                     <Text style={styles.deckDetail}>
-                        3 cards
+                        {selectedDeck.qids.length} cards
                     </Text>
                 </View>
                 <View>
