@@ -6,13 +6,13 @@ import {
 
 import globalStyles from '../styles/styles';
 
-import Quiz from '../components/Quiz';
+import QuizEnd from '../components/QuizEnd';
 
 export default class PQuiz extends Component {
     render() {
         return (
             <View>
-                <Quiz />
+                <QuizEnd />
             </View>
         );
     }
