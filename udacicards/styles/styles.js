@@ -54,6 +54,14 @@ const globalStyles = StyleSheet.create({
     },
     buttonText: {
         textAlign: 'center'
+    },
+    viewBtn: {
+        marginTop: 10
+    },
+    viewBtnText: {
+        color: '#8d8d8d',
+        textAlign: 'center',
+        fontWeight: 'bold'
     }
 });
 
