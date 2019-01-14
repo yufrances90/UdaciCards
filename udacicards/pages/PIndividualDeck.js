@@ -28,6 +28,14 @@ export default class PIndividualDeck extends Component {
         })
     }
 
+    handleStartQuiz() {
+        this.props.navigation.navigate('QuizV');
+    }
+
+    handleAddNewQuestion() {
+        this.props.navigation.navigate('NQuestion');
+    }
+
     render() {
 
         const { selectedDeck } = this.state;
@@ -47,12 +55,18 @@ export default class PIndividualDeck extends Component {
                     </Text>
                 </View>
                 <View>
-                    <TouchableOpacity style={styles.startBtn}>
+                    <TouchableOpacity 
+                        style={styles.startBtn}
+                        onPress={this.handleStartQuiz.bind(this)}
+                    >
                         <Text style={styles.startBtnText}>
                             Start Quiz
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.addBtn}>
+                    <TouchableOpacity 
+                        style={styles.addBtn}
+                        onPress={this.handleAddNewQuestion.bind(this)}
+                    >
                         <Text style={styles.addBtnText}>
                             Add New Question
                         </Text>
