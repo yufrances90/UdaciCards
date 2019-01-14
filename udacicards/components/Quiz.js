@@ -16,20 +16,26 @@ import QuizA from './QuizA';
 export default class Quiz extends Component {
     render() {
 
-        const { question } = this.props;
+        const { 
+            question, 
+            totalNumQuestions, 
+            qIndex 
+        } = this.props;
 
         if (!question) {
             return <ActivityIndicator />
         }
+
+        console.log("Selected Question: ", question);
 
         return (
             <View>
                 <QVHeader />
                 <View style={styles.container}>
                     <Text style={styles.numbers}>
-                        2/2
+                        {qIndex + 1} / {totalNumQuestions}
                     </Text>
-                    <QuizA />
+                    <QuizA question={question.question} />
                     <QVFooter />
                 </View>
             </View>

@@ -9,10 +9,12 @@ import globalStyles from '../styles/styles';
 
 export default class QuizA extends Component {
     render() {
+
+        const { question } = this.props;
         return (
             <Fragment>
                 <Text style={styles.question}>
-                    What is your name?
+                    {question}
                 </Text>
                 <TouchableOpacity
                     style={globalStyles.viewBtn}

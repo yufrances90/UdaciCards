@@ -42,15 +42,15 @@ export default class PQuiz extends Component {
 
         const qids = navigation.getParam("qids");
 
-        console.log(qids[index]);
-
-        console.log(questions);
-
         const selectedQuestion = questions[qids[index]];
 
         return (
             <View style={globalStyles.centeredContainer}>
-                <Quiz question={selectedQuestion} />
+                <Quiz 
+                    question={selectedQuestion}
+                    totalNumQuestions={qids.length}
+                    qIndex={index} 
+                />
             </View>
         );
     }

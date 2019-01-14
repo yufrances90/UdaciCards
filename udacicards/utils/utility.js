@@ -10,6 +10,8 @@ import {
 
 import { STORAGE_KEYS } from './constants';
 
+import md5 from 'md5';
+
 const generateUID  = () => {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
@@ -27,22 +29,35 @@ const generateInitialData = () => {
 
         questionsByDeck.forEach(question => {
 
-            const questionObj = {
-                id: generateUID(),
+            let questionObj = {
                 question: question.question,
                 answer: question.answer,
                 deck
+            }
+
+
+            const id = md5(JSON.stringify(questionObj));
+
+            questionObj = {
+                ...questionObj,
+                id
             }
 
             questions[questionObj.id] = questionObj;
             qids.push(questionObj.id);
         });
 
-        const deckObj = {
-            id: generateUID(),
+        let deckObj = {
             title: deck,
             qids
         };
+
+        const id = md5(JSON.stringify(deckObj));
+
+        deckObj = {
+            ...deckObj,
+            id
+        }
 
         decks[deck] = deckObj;
     });
