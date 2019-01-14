@@ -39,6 +39,10 @@ export default class PDeckList extends Component {
         });
     }
 
+    handleAddNewDeck() {
+        this.props.navigation.navigate('NDeck');
+    }
+
     render() {
 
         const { decks } = this.state;
@@ -65,7 +69,9 @@ export default class PDeckList extends Component {
                             );
                         })}
                     </View>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={this.handleAddNewDeck.bind(this)}
+                    >
                         <View style={styles.diffDeckElement}>
                             <Text style={styles.diffDeckSmallTitle}>Add New Deck</Text>
                         </View>
