@@ -5,11 +5,12 @@ import {
     View,
     ScrollView,
     TouchableOpacity,
+    ActivityIndicator
 } from 'react-native';
 
 import globalStyles from '../styles/styles';
 
-import { generateAndSaveInitialData } from '../utils/utility';
+import { getAllDeckData } from '../utils/utility';
 
 import DeckListElement from '../components/DeckListElement';
 
@@ -17,17 +18,11 @@ export default class PDeckList extends Component {
 
     state = {
         decks: {},
-        questions: {}
+        isDeckUpdated: false
     }
 
     componentDidMount() {
-
-        const { decks, questions } = generateAndSaveInitialData();
-
-        this.setState({
-            decks,
-            questions
-        });
+        this.renderData();
     }
 
     handlePress(event, deckObj) {
@@ -43,9 +38,23 @@ export default class PDeckList extends Component {
         this.props.navigation.navigate('NDeck');
     }
 
+    renderData() {
+        getAllDeckData().then(data => {
+            this.setState({
+                decks: JSON.parse(data)
+            });
+        });
+    }
+
     render() {
 
-        const { decks } = this.state;
+        const { decks, isDeckUpdated } = this.state;
+
+        if (isDeckUpdated) {
+            this.renderData();
+        }
+
+        console.log("SAVED DECKS: ", decks);
 
         return (
            <View style={styles.container}>

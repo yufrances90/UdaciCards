@@ -21,15 +21,21 @@ export default class PIndividualDeck extends Component {
 
         const selectedDeck = navigation.getParam('deck', null);
 
-        console.log(selectedDeck);
+        console.log("Selected Deck: ", selectedDeck);
 
         this.setState({
             selectedDeck
-        })
+        });
     }
 
     handleStartQuiz() {
-        this.props.navigation.navigate('QuizV');
+
+        const { selectedDeck } = this.state;
+
+        this.props.navigation.navigate('QuizV', {
+            qids: selectedDeck.qids,
+            deck: selectedDeck.title
+        });
     }
 
     handleAddNewQuestion() {

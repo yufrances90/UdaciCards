@@ -3,7 +3,7 @@ import {
     StyleSheet, 
     Text, 
     View,
-    TouchableOpacity
+    ActivityIndicator
 } from 'react-native';
 
 import globalStyles from '../styles/styles';
@@ -15,6 +15,13 @@ import QuizA from './QuizA';
 
 export default class Quiz extends Component {
     render() {
+
+        const { question } = this.props;
+
+        if (!question) {
+            return <ActivityIndicator />
+        }
+
         return (
             <View>
                 <QVHeader />
@@ -22,7 +29,7 @@ export default class Quiz extends Component {
                     <Text style={styles.numbers}>
                         2/2
                     </Text>
-                    <QuizB />
+                    <QuizA />
                     <QVFooter />
                 </View>
             </View>
