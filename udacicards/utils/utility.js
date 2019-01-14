@@ -62,13 +62,10 @@ export const generateAndSaveInitialData = () => {
 
     saveItem(STORAGE_KEYS.DECKS, decks);
     saveItem(STORAGE_KEYS.QUESTIONS, questions);
+
+    return {
+        decks,
+        questions
+    }
 }
  
-
-export const getAllDeckData = () => {
-   return getItem(STORAGE_KEYS.DECKS);
-}
-
-export const getAllQuestionData = () => {
-    return getItem(STORAGE_KEYS.QUESTIONS);
-}
