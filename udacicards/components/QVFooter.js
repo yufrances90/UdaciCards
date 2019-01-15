@@ -11,7 +11,11 @@ import globalStyles from '../styles/styles';
 export default class QVFooter extends Component {
 
     handleButtonClick(event) {
-        this.props.handleClickNextQuestion()
+        this.props.handleClickCorrectButton()
+    }
+
+    handleIncorrectButtonClick(event) {
+        this.props.handleClickNextQuestion();
     }
 
     render() {
@@ -27,7 +31,7 @@ export default class QVFooter extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.incorrectBtn}
-                    onPress={this.handleButtonClick.bind(this)}
+                    onPress={this.handleIncorrectButtonClick.bind(this)}
                 >
                     <Text style={styles.incorrectBtnText}>
                         Incorrect

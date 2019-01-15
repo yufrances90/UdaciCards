@@ -11,10 +11,6 @@ import globalStyles from '../styles/styles';
 
 export default class QuizEnd extends Component {
 
-    state = {
-        finalScore: 80
-    }
-
     handleRestartButtonClick(event) {
         
         const { navigation, qids } = this.props;
@@ -58,7 +54,7 @@ export default class QuizEnd extends Component {
 
     render() {
 
-        const { finalScore } = this.state;
+        const { score } = this.props;
 
         return (
             <View>
@@ -67,7 +63,7 @@ export default class QuizEnd extends Component {
                     Your Final Score
                     </Text>
                     <Text style={styles.scoreTextI}>
-                        {finalScore}%
+                        {score}%
                     </Text>
                 </View>
                 <View>

@@ -20,7 +20,8 @@ export default class PQuiz extends Component {
         index: 0,
         questions: {},
         qids: [],
-        isEndOfQuiz: false
+        numCorrectQuestions: 0,
+        score: 0
     }
 
     componentDidMount() {
@@ -46,16 +47,17 @@ export default class PQuiz extends Component {
 
     handleClickNextQuestion(event) {
         
-        const { index, qids } = this.state;
+        const { 
+            index, 
+            qids
+        } = this.state;
 
         const totalNumQuestions = qids.length;
 
         if (index + 1 >= totalNumQuestions) {
-            
             this.setState({
                 isEndOfQuiz: true
-            });
-
+            })
             return;
         }
 
@@ -78,13 +80,31 @@ export default class PQuiz extends Component {
         }));
     }
 
+    handleClickCorrectButton(event) {
+
+        this.setState(prevState => ({
+            numCorrectQuestions: prevState.numCorrectQuestions + 1,
+            isEndOfQuiz: this.isEndOfQuiz()
+        }));
+
+        this.handleClickNextQuestion(event);
+    }
+
+    isEndOfQuiz() {
+
+        const { index, qids } = this.state;
+
+        return (index + 1 >= qids.length);
+    }
+
     render() {
             
         const { 
             index, 
             questions, 
             qids,
-            isEndOfQuiz 
+            isEndOfQuiz,
+            numCorrectQuestions 
         } = this.state;
 
         const {
@@ -109,6 +129,7 @@ export default class PQuiz extends Component {
                         qIndex={index}
                         handleClickNextQuestion={this.handleClickNextQuestion.bind(this)} 
                         handleClickPrevQuestion={this.handleClickPrevQuestion.bind(this)}
+                        handleClickCorrectButton={this.handleClickCorrectButton.bind(this)}
                     />
                 }
                 {
@@ -116,6 +137,7 @@ export default class PQuiz extends Component {
                     <QuizEnd 
                         navigation={navigation}
                         qids={qids}
+                        score={(numCorrectQuestions / totalNumQuestions) * 100}
                     />
                 }
             </View>
