@@ -16,6 +16,10 @@ const generateUID  = () => {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
+const generateQuestionID = (object) => {
+    return md5(JSON.stringify(object));
+}
+
 const generateInitialData = () => {
 
     let questions = {};
@@ -29,34 +33,17 @@ const generateInitialData = () => {
 
         questionsByDeck.forEach(question => {
 
-            let questionObj = {
-                question: question.question,
-                answer: question.answer,
-                deck
-            }
-
-
-            const id = md5(JSON.stringify(questionObj));
-
-            questionObj = {
-                ...questionObj,
-                id
-            }
+            let questionObj = createNewQuestion(question, deck);
 
             questions[questionObj.id] = questionObj;
             qids.push(questionObj.id);
         });
 
-        let deckObj = {
-            title: deck,
-            qids
-        };
-
-        const id = md5(JSON.stringify(deckObj));
+        let deckObj = createNewDeck(deck);
 
         deckObj = {
             ...deckObj,
-            id
+            qids
         }
 
         decks[deck] = deckObj;
@@ -86,4 +73,28 @@ export const getAllDeckData = () => {
 
 export const getAllQuestionData = () => {
     return getItem(STORAGE_KEYS.QUESTIONS);
+}
+
+export const createNewDeck = (deckTitle) => {
+    return {
+        id: generateUID(),
+        title: deckTitle,
+        qids: []
+    }
+}
+
+export const createNewQuestion = (question, deckTitle) => {
+
+    let questionObj =  {
+        question: question.question,
+        answer: question.answer,
+        deck: deckTitle
+    }
+
+    const id = generateQuestionID(questionObj);
+
+    return {
+        ...questionObj,
+        id
+    }
 }
