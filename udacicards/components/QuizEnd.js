@@ -3,7 +3,8 @@ import {
     StyleSheet, 
     View,
     Text, 
-    TouchableOpacity
+    TouchableOpacity,
+    AlertIOS
 } from 'react-native';
 
 import globalStyles from '../styles/styles';
@@ -18,9 +19,41 @@ export default class QuizEnd extends Component {
         
         const { navigation, qids } = this.props;
 
-        navigation.push("QuizV", {
-            qids
-        });
+        AlertIOS.alert(
+            'Restart Quiz',
+            'Are you sure?',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {
+                text: 'Continue',
+                onPress: () => navigation.push("QuizV", {
+                    qids
+                }),
+              },
+            ],
+        );
+    }
+
+    handleBackButtonClick(event) {
+        AlertIOS.alert(
+            'Return to Deck List',
+            'Are you sure?',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {
+                text: 'Continue',
+                onPress: () => this.props.navigation.navigate("Home"),
+              },
+            ],
+        );
     }
 
     render() {
@@ -48,6 +81,7 @@ export default class QuizEnd extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.backBtn}
+                        onPress={this.handleBackButtonClick.bind(this)}
                     >
                         <Text style={globalStyles.buttonText}>
                             Back To Home

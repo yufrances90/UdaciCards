@@ -4,7 +4,8 @@ import {
     Text, 
     View,
     TouchableOpacity,
-    ActivityIndicator
+    ActivityIndicator,
+    AlertIOS
 } from 'react-native';
 
 import globalStyles from '../styles/styles';
@@ -32,10 +33,24 @@ export default class PIndividualDeck extends Component {
 
         const { selectedDeck } = this.state;
 
-        this.props.navigation.navigate('QuizV', {
-            qids: selectedDeck.qids,
-            deck: selectedDeck.title
-        });
+        AlertIOS.alert(
+            'Quiz Start',
+            'Are you sure?',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {
+                text: 'Continue',
+                onPress: () => this.props.navigation.navigate('QuizV', {
+                    qids: selectedDeck.qids,
+                    deck: selectedDeck.title
+                }),
+              },
+            ],
+        );
     }
 
     handleAddNewQuestion() {
