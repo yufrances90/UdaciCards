@@ -13,6 +13,16 @@ export default class QuizEnd extends Component {
     state = {
         finalScore: 80
     }
+
+    handleRestartButtonClick(event) {
+        
+        const { navigation, qids } = this.props;
+
+        navigation.push("QuizV", {
+            qids
+        });
+    }
+
     render() {
 
         const { finalScore } = this.state;
@@ -30,6 +40,7 @@ export default class QuizEnd extends Component {
                 <View>
                     <TouchableOpacity
                         style={styles.restartBtn}
+                        onPress={this.handleRestartButtonClick.bind(this)}
                     >
                         <Text style={globalStyles.buttonText}>
                             Restart Quiz

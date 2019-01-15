@@ -87,6 +87,10 @@ export default class PQuiz extends Component {
             isEndOfQuiz 
         } = this.state;
 
+        const {
+            navigation
+        } = this.props;
+
         if (Object.keys(questions).length === 0) {
             return <ActivityIndicator />
         }
@@ -109,7 +113,10 @@ export default class PQuiz extends Component {
                 }
                 {
                     isEndOfQuiz && 
-                    <QuizEnd />
+                    <QuizEnd 
+                        navigation={navigation}
+                        qids={qids}
+                    />
                 }
             </View>
         );
