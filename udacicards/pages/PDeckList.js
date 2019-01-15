@@ -13,6 +13,7 @@ import globalStyles from '../styles/styles';
 import { getAllDeckData } from '../utils/utility';
 
 import DeckListElement from '../components/DeckListElement';
+import DeckList from '../components/DeckList';
 
 export default class PDeckList extends Component {
 
@@ -57,36 +58,11 @@ export default class PDeckList extends Component {
         console.log("SAVED DECKS: ", decks);
 
         return (
-           <View style={styles.container}>
-               <ScrollView>
-                    <View>
-                        {Object.keys(decks).map(deck => {
-                            
-                            const deckObj = decks[deck];
-
-                            return (
-                               <View id={deckObj.id} key={deckObj.id}>
-                                   <TouchableOpacity 
-                                        onPress={event => this.handlePress(event, deckObj)}
-                                    >
-                                        <DeckListElement 
-                                            key={deckObj.id} 
-                                            deck={deckObj}
-                                        /> 
-                                </TouchableOpacity>
-                               </View>
-                            );
-                        })}
-                    </View>
-                    <TouchableOpacity
-                        onPress={this.handleAddNewDeck.bind(this)}
-                    >
-                        <View style={styles.diffDeckElement}>
-                            <Text style={styles.diffDeckSmallTitle}>Add New Deck</Text>
-                        </View>
-                    </TouchableOpacity>
-               </ScrollView>
-           </View>
+           <DeckList
+                decks={decks}
+                handlePress={this.handlePress.bind(this)}
+                handleAddNewDeck={this.handleAddNewDeck.bind(this)}
+           />
         );
     }
 }
