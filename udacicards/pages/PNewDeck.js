@@ -4,28 +4,34 @@ import {
     Text, 
     View,
     TextInput,
-    TouchableOpacity 
+    TouchableOpacity,
+    TouchableWithoutFeedback 
 } from 'react-native';
 
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import DismissKeyboard from 'dismissKeyboard';
 
 import globalStyles from '../styles/styles';
 
 export default class PNewDeck extends Component {
     render() {
         return (
-            <View style={globalStyles.centeredContainer}>
-                <Text style={styles.title}>What is the title of your new deck?</Text>
-                <TextInput 
-                  placeholder="Enter New Deck Title Here..."
-                />
-                <TouchableOpacity
-                    style={globalStyles.submitBtn}
-                >
-                    <Text style={globalStyles.submitBtnText}>Submit</Text>
-                </TouchableOpacity>
-                <KeyboardSpacer />
-            </View>
+            <TouchableWithoutFeedback
+                onPress={()=>{DismissKeyboard()}} 
+            >
+                <View style={globalStyles.centeredContainer}>
+                    <Text style={styles.title}>What is the title of your new deck?</Text>
+                    <TextInput 
+                    placeholder="Enter New Deck Title Here..."
+                    />
+                    <TouchableOpacity
+                        style={globalStyles.submitBtn}
+                    >
+                        <Text style={globalStyles.submitBtnText}>Submit</Text>
+                    </TouchableOpacity>
+                    <KeyboardSpacer />
+                </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
