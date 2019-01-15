@@ -7,6 +7,8 @@ import {
     TouchableOpacity 
 } from 'react-native';
 
+import KeyboardSpacer from 'react-native-keyboard-spacer';
+
 import globalStyles from '../styles/styles';
 
 export default class PNewDeck extends Component {
@@ -22,6 +24,7 @@ export default class PNewDeck extends Component {
                 >
                     <Text style={globalStyles.submitBtnText}>Submit</Text>
                 </TouchableOpacity>
+                <KeyboardSpacer />
             </View>
         );
     }
