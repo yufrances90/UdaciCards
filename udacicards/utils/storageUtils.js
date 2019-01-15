@@ -17,3 +17,11 @@ export const getItem = async (key) => {
         console.error(error.message)
     }
 }
+
+export const mergeItem = async (key, newObject) => {
+    try {
+        return await AsyncStorage.mergeItem(key, JSON.stringify(newObject));
+    } catch(error) {
+        console.error(error.message);
+    }
+}

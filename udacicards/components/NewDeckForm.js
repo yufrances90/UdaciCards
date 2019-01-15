@@ -49,7 +49,7 @@ export default class NewDeckForm extends Component {
                         value={deckTitle}
                         onChangeText={this.handleChange.bind(this)}
                         autoCorrect={false}
-                        autoCapitalize={"none"}
+                        autoCapitalize={"words"}
                     />
                     <TouchableOpacity
                         style={globalStyles.submitBtn}

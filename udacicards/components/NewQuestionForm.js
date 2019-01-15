@@ -55,7 +55,7 @@ export default class NewQuestionForm extends Component {
                         style={styles.textInput}
                         value={question}
                         autoCorrect={false}
-                        autoCapitalize={"none"}
+                        autoCapitalize={"sentences"}
                         onChangeText={
                             (text) => this.setState({
                                 question: text
@@ -66,7 +66,7 @@ export default class NewQuestionForm extends Component {
                         placeholder="Enter Your Expected Answer Here..."
                         value={answer}
                         autoCorrect={false}
-                        autoCapitalize={"none"}
+                        autoCapitalize={"sentences"}
                         onChangeText={
                             (text) => this.setState({
                                 answer: text

@@ -1,16 +1,15 @@
+import md5 from 'md5';
+
 import { 
     QUESTIONS, 
-    DECKS 
+    DECKS,
+    STORAGE_KEYS 
 } from './constants';
-
 import {
     saveItem,
-    getItem
+    getItem,
+    mergeItem
 } from './storageUtils';
-
-import { STORAGE_KEYS } from './constants';
-
-import md5 from 'md5';
 
 const generateUID  = () => {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
@@ -65,15 +64,6 @@ export const generateAndSaveInitialData = () => {
     saveItem(STORAGE_KEYS.DECKS, decks);
     saveItem(STORAGE_KEYS.QUESTIONS, questions);
 }
- 
-
-export const getAllDeckData = () => {
-   return getItem(STORAGE_KEYS.DECKS);
-}
-
-export const getAllQuestionData = () => {
-    return getItem(STORAGE_KEYS.QUESTIONS);
-}
 
 export const createNewDeck = (deckTitle) => {
     return {
@@ -97,4 +87,30 @@ export const createNewQuestion = (question, deckTitle) => {
         ...questionObj,
         id
     }
+}
+
+export const getAllDeckData = () => {
+    return getItem(STORAGE_KEYS.DECKS);
+}
+ 
+export const getAllQuestionData = () => {
+    return getItem(STORAGE_KEYS.QUESTIONS);
+}
+
+export const updateDeckData = (newDeck) => {
+
+    getAllDeckData().then(data => {
+        
+        const decks = JSON.parse(data);
+
+        decks[newDeck.title] = newDeck;
+
+        console.log("Updated decks: ", decks);
+
+        mergeItem(STORAGE_KEYS.DECKS, decks);
+    });
+}
+
+export const updateQuestionData = (updatedQuestions) => {
+    return mergeItem(STORAGE_KEYS.QUESTIONS, updatedQuestions);
 }

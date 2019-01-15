@@ -5,7 +5,10 @@ import {
 
 import globalStyles from '../styles/styles';
 
-import { createNewDeck } from '../utils/utility';
+import { 
+    createNewDeck,
+    updateDeckData 
+} from '../utils/utility';
 
 import NewDeckForm from '../components/NewDeckForm';
 
@@ -15,7 +18,9 @@ export default class PNewDeck extends Component {
 
         const newDeck = createNewDeck(deckTitle);
 
-        alert(JSON.stringify(newDeck));
+        updateDeckData(newDeck).then(() => {
+            this.props.navigation.navigate("Home");
+        });
     }
 
     render() {
