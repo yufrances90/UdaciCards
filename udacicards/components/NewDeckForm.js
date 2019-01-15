@@ -27,7 +27,7 @@ export default class NewDeckForm extends Component {
 
     handleClick(event) {
         
-        alert(this.state.deckTitle);
+        this.props.handleCreateNewDeck(this.state.deckTitle);
 
         this.setState({
             deckTitle: ''
@@ -37,7 +37,7 @@ export default class NewDeckForm extends Component {
     render() {
 
         const { deckTitle } = this.state;
-        
+
         return (
             <TouchableWithoutFeedback
                 onPress={()=>{DismissKeyboard()}} 

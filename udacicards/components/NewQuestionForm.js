@@ -22,7 +22,18 @@ export default class NewQuestionForm extends Component {
 
     handleSubmit(event) {
 
-        alert(this.state.question);
+        const {
+            question,
+            answer 
+        } = this.state;
+
+        this.props.handleCreateNewQuestion(
+            {
+                question, 
+                answer
+            },
+            this.props.deck
+        );
 
         this.setState({
             question: '',

@@ -54,7 +54,9 @@ export default class PIndividualDeck extends Component {
     }
 
     handleAddNewQuestion() {
-        this.props.navigation.navigate('NQuestion');
+        this.props.navigation.navigate('NQuestion', {
+            deckTitle: this.state.selectedDeck.title
+        });
     }
 
     render() {
