@@ -68,17 +68,4 @@ export default class PDeckList extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        ...globalStyles.centeredContainer,
-        paddingTop: 50,
-        paddingBottom: 50
-    },
-    diffDeckElement: {
-        ...globalStyles.deckElement,
-        borderStyle: 'dashed'
-    },
-    diffDeckSmallTitle: {
-        ...globalStyles.deckSmallTitle,
-        color: '#d3d3d3'
-    }
 });
