@@ -3,7 +3,8 @@ import {
     StyleSheet, 
     Text, 
     View,
-    ActivityIndicator
+    ActivityIndicator,
+    TouchableOpacity
 } from 'react-native';
 
 import globalStyles from '../styles/styles';
@@ -14,6 +15,26 @@ import QuizB from './QuizB';
 import QuizA from './QuizA';
 
 export default class Quiz extends Component {
+
+    state = {
+        side: 0
+    }
+
+    handleChangeSide() {
+
+        const { side } = this.state; 
+
+        if (side === 0) {
+            this.setState({
+                side: 1
+            });
+        } else {
+            this.setState({
+                side: 0
+            });
+        }
+    }
+
     render() {
 
         const { 
@@ -26,6 +47,8 @@ export default class Quiz extends Component {
             return <ActivityIndicator />
         }
 
+        const { side } = this.state;
+
         console.log("Selected Question: ", question);
 
         return (
@@ -35,7 +58,18 @@ export default class Quiz extends Component {
                     <Text style={styles.numbers}>
                         {qIndex + 1} / {totalNumQuestions}
                     </Text>
-                    <QuizA question={question.question} />
+                    {
+                        side === 0? 
+                        <QuizA 
+                            question={question.question}
+                            handleChangeSide={this.handleChangeSide.bind(this)} 
+                        /> :
+                        <QuizB
+                            answer={question.answer}
+                            handleChangeSide={this.handleChangeSide.bind(this)} 
+                        />
+                    }
+                    
                     <QVFooter />
                 </View>
             </View>

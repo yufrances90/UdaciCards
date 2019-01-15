@@ -8,17 +8,26 @@ import {
 import globalStyles from '../styles/styles';
 
 export default class QuizB extends Component {
+
+    handleClickShowQuestion() {
+        this.props.handleChangeSide();
+    }
+
     render() {
+
+        const { answer } = this.props;
+
         return (
             <Fragment>
                 <Text style={styles.answer}>
-                    Yes!
+                    {answer}
                 </Text>
                 <TouchableOpacity
                     style={globalStyles.viewBtn}
+                    onPress={this.handleClickShowQuestion.bind(this)}
                 >
                     <Text style={globalStyles.viewBtnText}>
-                    Show Question
+                        Show Question
                     </Text>
                 </TouchableOpacity>
             </Fragment>
