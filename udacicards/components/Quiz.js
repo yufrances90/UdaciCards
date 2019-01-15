@@ -40,7 +40,9 @@ export default class Quiz extends Component {
         const { 
             question, 
             totalNumQuestions, 
-            qIndex 
+            qIndex,
+            // handleClickNextQuestion,
+            // handleClickPrevQuestion 
         } = this.props;
 
         if (!question) {
@@ -53,7 +55,10 @@ export default class Quiz extends Component {
 
         return (
             <View>
-                <QVHeader />
+                {/* <QVHeader 
+                    handleClickNextQuestion={handleClickNextQuestion}
+                    handleClickPrevQuestion={handleClickPrevQuestion}
+                /> */}
                 <View style={styles.container}>
                     <Text style={styles.numbers}>
                         {qIndex + 1} / {totalNumQuestions}

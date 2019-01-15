@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { 
     StyleSheet, 
     View,
-    ActivityIndicator
+    ActivityIndicator,
+    TouchableOpacity,
+    Text
 } from 'react-native';
 
 import globalStyles from '../styles/styles';
@@ -15,7 +17,8 @@ export default class PQuiz extends Component {
 
     state = {
         index: 0,
-        questions: {}
+        questions: {},
+        qids: []
     }
 
     componentDidMount() {
@@ -27,29 +30,68 @@ export default class PQuiz extends Component {
             this.setState({
                 questions: dataObj
             });
+        }).then(() => {
+
+            const { navigation } = this.props;
+
+            const qids = navigation.getParam("qids");
+
+            this.setState({
+                qids
+            });
         });
     }
 
+    handleClickNextQuestion(event) {
+        
+        const { index, qids } = this.state;
+
+        const totalNumQuestions = qids.length;
+
+        if (index + 1 >= totalNumQuestions) {
+            alert("Error: End of Quiz!");
+            return;
+        }
+
+        this.setState(prevState => ({
+            index: prevState.index+1
+        }));
+    }
+
+    handleClickPrevQuestion(event) {
+
+        const { index } = this.state;
+
+        if (index <= 0) {
+            alert("Error: This is the first question!");
+            return;
+        }
+
+        this.setState(prevState => ({
+            index: prevState.index-1
+        }));
+    }
+
     render() {
-
-        const { navigation } = this.props;
-
-        const { index, questions } = this.state;
+            
+        const { index, questions, qids } = this.state;
 
         if (Object.keys(questions).length === 0) {
             return <ActivityIndicator />
         }
 
-        const qids = navigation.getParam("qids");
-
         const selectedQuestion = questions[qids[index]];
+
+        const totalNumQuestions = qids.length;
 
         return (
             <View style={globalStyles.centeredContainer}>
                 <Quiz 
                     question={selectedQuestion}
-                    totalNumQuestions={qids.length}
-                    qIndex={index} 
+                    totalNumQuestions={totalNumQuestions}
+                    qIndex={index}
+                    handleClickNextQuestion={this.handleClickNextQuestion.bind(this)} 
+                    handleClickPrevQuestion={this.handleClickPrevQuestion.bind(this)}
                 />
             </View>
         );

@@ -11,16 +11,29 @@ import globalStyles from '../styles/styles';
 
 export default class QVHeader extends Component {
 
+    handleNextButtonClick(event) {
+       this.props.handleClickNextQuestion();
+    }
+
+    handlePrevButtonClick(event) {
+        this.props.handleClickPrevQuestion();
+    }
+
     render() {
+
         return (
             <View>
                 <View style={styles.returnBtn}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={this.handlePrevButtonClick.bind(this)}
+                    >
                         <AntDesign name="leftcircleo" size={32} />
                     </TouchableOpacity>
                 </View>
                 <View style={styles.nextBtn}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={this.handleNextButtonClick.bind(this)}
+                    >
                         <AntDesign name="rightcircleo" size={32} />
                     </TouchableOpacity>
                 </View>
