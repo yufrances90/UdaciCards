@@ -41,7 +41,7 @@ export default class Quiz extends Component {
             question, 
             totalNumQuestions, 
             qIndex,
-            // handleClickNextQuestion,
+            handleClickNextQuestion,
             // handleClickPrevQuestion 
         } = this.props;
 
@@ -74,8 +74,9 @@ export default class Quiz extends Component {
                             handleChangeSide={this.handleChangeSide.bind(this)} 
                         />
                     }
-                    
-                    <QVFooter />
+                    <QVFooter
+                        handleClickNextQuestion={handleClickNextQuestion} 
+                    />
                 </View>
             </View>
         );

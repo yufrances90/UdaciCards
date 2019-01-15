@@ -12,13 +12,15 @@ import globalStyles from '../styles/styles';
 import { getAllQuestionData } from '../utils/utility';
 
 import Quiz from '../components/Quiz';
+import QuizEnd from '../components/QuizEnd';
 
 export default class PQuiz extends Component {
 
     state = {
         index: 0,
         questions: {},
-        qids: []
+        qids: [],
+        isEndOfQuiz: false
     }
 
     componentDidMount() {
@@ -49,7 +51,11 @@ export default class PQuiz extends Component {
         const totalNumQuestions = qids.length;
 
         if (index + 1 >= totalNumQuestions) {
-            alert("Error: End of Quiz!");
+            
+            this.setState({
+                isEndOfQuiz: true
+            });
+
             return;
         }
 
@@ -74,7 +80,12 @@ export default class PQuiz extends Component {
 
     render() {
             
-        const { index, questions, qids } = this.state;
+        const { 
+            index, 
+            questions, 
+            qids,
+            isEndOfQuiz 
+        } = this.state;
 
         if (Object.keys(questions).length === 0) {
             return <ActivityIndicator />
@@ -86,13 +97,20 @@ export default class PQuiz extends Component {
 
         return (
             <View style={globalStyles.centeredContainer}>
-                <Quiz 
-                    question={selectedQuestion}
-                    totalNumQuestions={totalNumQuestions}
-                    qIndex={index}
-                    handleClickNextQuestion={this.handleClickNextQuestion.bind(this)} 
-                    handleClickPrevQuestion={this.handleClickPrevQuestion.bind(this)}
-                />
+                {
+                    !isEndOfQuiz && 
+                    <Quiz 
+                        question={selectedQuestion}
+                        totalNumQuestions={totalNumQuestions}
+                        qIndex={index}
+                        handleClickNextQuestion={this.handleClickNextQuestion.bind(this)} 
+                        handleClickPrevQuestion={this.handleClickPrevQuestion.bind(this)}
+                    />
+                }
+                {
+                    isEndOfQuiz && 
+                    <QuizEnd />
+                }
             </View>
         );
     }
