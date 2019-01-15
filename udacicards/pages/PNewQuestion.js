@@ -9,29 +9,15 @@ import {
 
 import globalStyles from '../styles/styles';
 
+import NewQuestionForm from '../components/NewQuestionForm';
+
 export default class PNewQuestion extends Component {
     render() {
         return (
-            <View style={globalStyles.centeredContainer}>
-                <TextInput 
-                  placeholder="Enter New Question Here..."
-                  style={styles.textInput}
-                />
-                 <TextInput 
-                  placeholder="Enter Your Expected Answer Here..."
-                />
-                <TouchableOpacity
-                    style={globalStyles.submitBtn}
-                >
-                    <Text style={globalStyles.submitBtnText}>Submit</Text>
-                </TouchableOpacity>
-            </View>
+            <NewQuestionForm />
         );
     }
 }
 
 const styles = StyleSheet.create({
-    textInput: {
-        fontSize: 25
-    }
 });
