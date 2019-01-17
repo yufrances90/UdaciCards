@@ -30,7 +30,7 @@ export default class PDeckList extends Component {
 
         console.log("Selected deck object: ", deckObj);
 
-        this.props.navigation.navigate('IDeck', {
+        this.props.navigation.push('IDeck', {
             deck: deckObj
         });
     }

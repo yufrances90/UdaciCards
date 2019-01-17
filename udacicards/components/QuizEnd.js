@@ -63,7 +63,7 @@ export default class QuizEnd extends Component {
                     Your Final Score
                     </Text>
                     <Text style={styles.scoreTextI}>
-                        {score}%
+                        {score.toFixed(2)}%
                     </Text>
                 </View>
                 <View>
