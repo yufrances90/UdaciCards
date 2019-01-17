@@ -123,27 +123,30 @@ export const updateQuestionData = (newQuestion) => {
 
         console.log("Updated questions: ", questions);
 
-        mergeItem(STORAGE_KEYS.QUESTIONS, questions);
+        return mergeItem(STORAGE_KEYS.QUESTIONS, questions).then(() => {
 
-        getAllDeckData().then(data => {
+            return getAllDeckData().then(data => {
 
-            let decks = JSON.parse(data);
-
-            let qids = decks[deckTitle].qids;
-
-            qids.push(newQuestion.id);
-
-            decks = {
-                ...decks,
-                [deckTitle]: {
-                    ...decks[deckTitle],
-                    qids
+                let decks = JSON.parse(data);
+    
+                let qids = decks[deckTitle].qids;
+    
+                qids.push(newQuestion.id);
+    
+                decks = {
+                    ...decks,
+                    [deckTitle]: {
+                        ...decks[deckTitle],
+                        qids
+                    }
                 }
-            }
-
-            console.log("Updated decks after adding new question: ", decks);
-
-            mergeItem(STORAGE_KEYS.DECKS, decks);
+    
+                console.log("Updated decks after adding new question: ", decks);
+    
+                return mergeItem(STORAGE_KEYS.DECKS, decks).then(() => {
+                    return decks;
+                });
+            });
         });
     });
 }

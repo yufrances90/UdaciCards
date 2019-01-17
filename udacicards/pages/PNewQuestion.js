@@ -39,9 +39,13 @@ export default class PNewQuestion extends Component {
 
         console.log("New question to be added: ", newQuestion);
 
-        updateQuestionData(newQuestion).then(
-            this.props.navigation.push("Home")
-        );
+        updateQuestionData(newQuestion).then(() => {
+            // this.props.navigation.push("Home");
+
+            this.props.navigation.push("IDeck", {
+                deck
+            })
+        });
     }
 
     render() {

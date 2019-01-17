@@ -46,7 +46,7 @@ export default class QuizEnd extends Component {
               },
               {
                 text: 'Continue',
-                onPress: () => this.props.navigation.navigate("Home"),
+                onPress: () => this.props.navigation.push("Home"),
               },
             ],
         );
