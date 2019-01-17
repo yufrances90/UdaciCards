@@ -22,4 +22,5 @@ export const QUESTIONS = {
 export const STORAGE_KEYS = {
     QUESTIONS: 'QUESTIONS',
     DECKS: 'DECKS',
+    CURRENT_USER: 'CURRENT_USER'
 }

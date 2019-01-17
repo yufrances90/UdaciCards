@@ -9,7 +9,10 @@ import {
 
 import globalStyles from '../styles/styles';
 
-import { getAllQuestionData } from '../utils/utility';
+import { 
+    getAllQuestionData,
+    updateUserData 
+} from '../utils/utility';
 
 import Quiz from '../components/Quiz';
 import QuizEnd from '../components/QuizEnd';
@@ -42,7 +45,7 @@ export default class PQuiz extends Component {
             this.setState({
                 qids
             });
-        });
+        }).then(() => updateUserData());
     }
 
     handleClickNextQuestion(event) {

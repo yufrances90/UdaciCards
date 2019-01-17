@@ -63,6 +63,13 @@ export const generateAndSaveInitialData = () => {
 
     saveItem(STORAGE_KEYS.DECKS, decks);
     saveItem(STORAGE_KEYS.QUESTIONS, questions);
+
+    const userObj = {
+        timestamp: new Date(),
+        numQuizTaken: 0
+    }
+
+    saveItem(STORAGE_KEYS.CURRENT_USER, userObj);
 }
 
 export const createNewDeck = (deckTitle) => {
@@ -149,4 +156,46 @@ export const updateQuestionData = (newQuestion) => {
             });
         });
     });
+}
+
+export const updateUserData = () => {
+
+    return getItem(STORAGE_KEYS.CURRENT_USER).then(data => {
+
+        let user = JSON.parse(data);
+
+        const prevTimestamp = new Date(user.timestamp);
+
+        const currTimestamp = new Date();
+
+        const dayDiffs = calculateDateDifference(currTimestamp, prevTimestamp);
+
+        if (dayDiffs == 0) {
+            user = {
+                numQuizTaken: user.numQuizTaken + 1,
+                timestamp: currTimestamp
+            }
+        } else {
+            user = {
+                numQuizTaken: 1,
+                timestamp: currTimestamp
+            }
+        }
+
+        console.log("Updated User: ", user);
+
+        return mergeItem(STORAGE_KEYS.CURRENT_USER, user).then(() => {
+            return user;
+        });
+    })
+}
+
+
+
+
+///////////////////////////////////////
+
+const calculateDateDifference = (date1, date2) => {
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    return parseInt((timeDiff / (1000 * 3600 * 24)).toFixed(0)); 
 }
