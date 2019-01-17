@@ -9,6 +9,9 @@ import {
 } from 'react-native';
 
 import globalStyles from '../styles/styles';
+
+import { getAllDeckData } from '../utils/utility';
+
 import IndividualDeck from '../components/IndividualDeck';
 
 export default class PIndividualDeck extends Component {
@@ -21,12 +24,19 @@ export default class PIndividualDeck extends Component {
 
         const { navigation } = this.props;
 
-        const selectedDeck = navigation.getParam('deck', null);
+        const tmpDeck = navigation.getParam('deck', null);
 
-        console.log("Selected Deck: ", selectedDeck);
+        getAllDeckData().then(data => {
 
-        this.setState({
-            selectedDeck
+            const decks = JSON.parse(data);
+
+            const selectedDeck = decks[tmpDeck.title];
+
+            console.log("Selected Deck: ", selectedDeck);
+
+            this.setState({
+                selectedDeck
+            });
         });
     }
 
@@ -56,7 +66,7 @@ export default class PIndividualDeck extends Component {
 
     handleAddNewQuestion() {
         this.props.navigation.navigate('NQuestion', {
-            deckTitle: this.state.selectedDeck.title
+            deck: this.state.selectedDeck
         });
     }
 

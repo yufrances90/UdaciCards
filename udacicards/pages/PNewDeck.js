@@ -19,7 +19,7 @@ export default class PNewDeck extends Component {
         const newDeck = createNewDeck(deckTitle);
 
         updateDeckData(newDeck).then(() => {
-            this.props.navigation.navigate("Home");
+            this.props.navigation.push("Home");
         });
     }
 

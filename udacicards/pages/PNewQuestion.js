@@ -27,7 +27,7 @@ export default class PNewQuestion extends Component {
         const { navigation } = this.props;
 
         this.setState({
-            deck: navigation.getParam("deckTitle")
+            deck: navigation.getParam("deck")
         });
     }
 
@@ -35,23 +35,23 @@ export default class PNewQuestion extends Component {
 
         const { deck } = this.state;
 
-        const newQuestion = createNewQuestion(question, answer, deck);
+        const newQuestion = createNewQuestion(question, answer, deck.title);
 
         console.log("New question to be added: ", newQuestion);
 
         updateQuestionData(newQuestion).then(
-            this.props.navigation.navigate("IDeck", {
-                deck: newQuestion
-            }));
-
-
+            this.props.navigation.push("Home")
+        );
     }
 
     render() {
+
+        const { deck } = this.state;
+
         return (
             <NewQuestionForm
                 handleCreateNewQuestion={this.handleCreateNewQuestion.bind(this)} 
-                deck={this.state.deck}
+                deck={deck.title}
             />
         );
     }
