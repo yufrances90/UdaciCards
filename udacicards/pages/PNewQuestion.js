@@ -9,7 +9,10 @@ import {
 
 import globalStyles from '../styles/styles';
 
-import { createNewQuestion } from '../utils/utility';
+import { 
+    createNewQuestion,
+    updateQuestionData 
+} from '../utils/utility';
 
 import NewQuestionForm from '../components/NewQuestionForm';
 
@@ -34,7 +37,14 @@ export default class PNewQuestion extends Component {
 
         const newQuestion = createNewQuestion(question, answer, deck);
 
-        alert(JSON.stringify(newQuestion));
+        console.log("New question to be added: ", newQuestion);
+
+        updateQuestionData(newQuestion).then(
+            this.props.navigation.navigate("IDeck", {
+                deck: newQuestion
+            }));
+
+
     }
 
     render() {
