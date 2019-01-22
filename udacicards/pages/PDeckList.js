@@ -5,7 +5,8 @@ import {
     View,
     ScrollView,
     TouchableOpacity,
-    ActivityIndicator
+    ActivityIndicator,
+    Animated
 } from 'react-native';
 
 import globalStyles from '../styles/styles';
@@ -19,7 +20,8 @@ export default class PDeckList extends Component {
 
     state = {
         decks: {},
-        isDeckUpdated: false
+        isDeckUpdated: false,
+        bounceValue: new Animated.Value(1)
     }
 
     componentDidMount() {
@@ -30,7 +32,14 @@ export default class PDeckList extends Component {
 
         console.log("Selected deck object: ", deckObj);
 
-        this.props.navigation.push('IDeck', {
+        const { bounceValue } = this.state;
+
+        Animated.sequence([
+            Animated.timing(bounceValue, { duration: 5000, toValue: 3}),
+            Animated.spring(bounceValue, { toValue: 1, friction: 4})
+        ]).start();
+
+        setTimeout(this.props.navigation.push, 5000, 'IDeck', {
             deck: deckObj
         });
     }
@@ -49,7 +58,7 @@ export default class PDeckList extends Component {
 
     render() {
 
-        const { decks, isDeckUpdated } = this.state;
+        const { decks, isDeckUpdated, bounceValue } = this.state;
 
         if (isDeckUpdated) {
             this.renderData();
@@ -62,6 +71,7 @@ export default class PDeckList extends Component {
                 decks={decks}
                 handlePress={this.handlePress.bind(this)}
                 handleAddNewDeck={this.handleAddNewDeck.bind(this)}
+                bounceValue={bounceValue}
            />
         );
     }

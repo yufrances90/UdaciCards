@@ -19,7 +19,8 @@ export default class DeckList extends Component {
         const { 
             decks,
             handlePress,
-            handleAddNewDeck
+            handleAddNewDeck,
+            bounceValue
         } = this.props;
 
         if (!decks || Object.keys(decks) === 0) {
@@ -42,6 +43,7 @@ export default class DeckList extends Component {
                                         <DeckListElement 
                                             key={deckObj.id} 
                                             deck={deckObj}
+                                            bounceValue={bounceValue}
                                         /> 
                                 </TouchableOpacity>
                                </View>
