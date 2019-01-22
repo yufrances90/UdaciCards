@@ -19,8 +19,14 @@ export const QUESTIONS = {
     ]
 }
 
+export const NOTIFICATION_DETAILS = {
+    title: "UdaciCards",
+    body: "Time to start quiz now ^_^"
+}
+
 export const STORAGE_KEYS = {
     QUESTIONS: 'QUESTIONS',
     DECKS: 'DECKS',
-    CURRENT_USER: 'CURRENT_USER'
+    CURRENT_USER: 'CURRENT_USER',
+    NOTIFICATION_KEY: 'NOTIFICATION_KEY'
 }

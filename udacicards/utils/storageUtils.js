@@ -25,3 +25,11 @@ export const mergeItem = async (key, newObject) => {
         console.error(error.message);
     }
 }
+
+export const removeItem = async (key) => {
+    try {
+        return await AsyncStorage.removeItem(key);
+    } catch(error) {
+        console.error(error.message);
+    }
+}

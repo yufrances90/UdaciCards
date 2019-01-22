@@ -3,59 +3,19 @@ import md5 from 'md5';
 import { 
     QUESTIONS, 
     DECKS,
-    STORAGE_KEYS 
+    STORAGE_KEYS,
+    NOTIFICATION_DETAILS 
 } from './constants';
 import {
     saveItem,
     getItem,
-    mergeItem
+    mergeItem,
+    removeItem
 } from './storageUtils';
-
-const generateUID  = () => {
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-}
-
-const generateQuestionID = (object) => {
-    return md5(JSON.stringify(object));
-}
-
-const generateInitialData = () => {
-
-    let questions = {};
-    let decks = {}
-
-    DECKS.forEach(deck => {
-
-        const questionsByDeck = QUESTIONS[deck];
-
-        let qids = [];
-
-        questionsByDeck.forEach(question => {
-
-            let questionObj = createNewQuestion(question, deck);
-
-            questions[questionObj.id] = questionObj;
-            qids.push(questionObj.id);
-        });
-
-        let deckObj = createNewDeck(deck);
-
-        deckObj = {
-            ...deckObj,
-            qids
-        }
-
-        decks[deck] = deckObj;
-    });
-
-    console.log("Generated decks: ", decks);
-    console.log("Generated questions: ", questions);
-
-    return {
-        decks,
-        questions
-    };
-}
+import {
+    clearLocalNotification,
+    setLocalNotification
+} from './pushNotifications';
 
 export const generateAndSaveInitialData = () => {
 
@@ -190,12 +150,80 @@ export const updateUserData = () => {
     })
 }
 
+export const getNotificationKey = () => {
+    return getItem(STORAGE_KEYS.NOTIFICATION_KEY);
+}
 
+export const removeNotificationKey = () => {
+    return removeItem(STORAGE_KEYS.NOTIFICATION_KEY);
+}
 
+export const setNotificationKey = (valueObj) => {
+    return saveItem(STORAGE_KEYS.NOTIFICATION_KEY, valueObj);
+} 
 
-///////////////////////////////////////
+export const setLocalNotification = () => {
+    setLocalNotification(
+        NOTIFICATION_DETAILS.title, 
+        NOTIFICATION_DETAILS.body
+    );
+}
+
+export const clearLocalNotification = () => {
+    clearLocalNotification();
+}
+
+/**
+ * Private methods
+ */
 
 const calculateDateDifference = (date1, date2) => {
     const timeDiff = Math.abs(date2.getTime() - date1.getTime());
     return parseInt((timeDiff / (1000 * 3600 * 24)).toFixed(0)); 
+}
+
+const generateUID  = () => {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+}
+
+const generateQuestionID = (object) => {
+    return md5(JSON.stringify(object));
+}
+
+const generateInitialData = () => {
+
+    let questions = {};
+    let decks = {}
+
+    DECKS.forEach(deck => {
+
+        const questionsByDeck = QUESTIONS[deck];
+
+        let qids = [];
+
+        questionsByDeck.forEach(question => {
+
+            let questionObj = createNewQuestion(question, deck);
+
+            questions[questionObj.id] = questionObj;
+            qids.push(questionObj.id);
+        });
+
+        let deckObj = createNewDeck(deck);
+
+        deckObj = {
+            ...deckObj,
+            qids
+        }
+
+        decks[deck] = deckObj;
+    });
+
+    console.log("Generated decks: ", decks);
+    console.log("Generated questions: ", questions);
+
+    return {
+        decks,
+        questions
+    };
 }
