@@ -11,10 +11,6 @@ import {
     mergeItem,
     removeItem
 } from './storageUtils';
-import {
-    clearLocalNotification,
-    setLocalNotification
-} from './pushNotifications';
 
 export const generateAndSaveInitialData = () => {
 
