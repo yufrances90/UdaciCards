@@ -3,8 +3,7 @@ import md5 from 'md5';
 import { 
     QUESTIONS, 
     DECKS,
-    STORAGE_KEYS,
-    NOTIFICATION_DETAILS 
+    STORAGE_KEYS
 } from './constants';
 import {
     saveItem,
@@ -161,17 +160,6 @@ export const removeNotificationKey = () => {
 export const setNotificationKey = (valueObj) => {
     return saveItem(STORAGE_KEYS.NOTIFICATION_KEY, valueObj);
 } 
-
-export const setLocalNotificationU = () => {
-    setLocalNotification(
-        NOTIFICATION_DETAILS.title, 
-        NOTIFICATION_DETAILS.body
-    );
-}
-
-export const clearLocalNotificationU = () => {
-    clearLocalNotification();
-}
 
 /**
  * Private methods

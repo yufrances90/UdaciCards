@@ -5,13 +5,43 @@ import {
     removeNotificationKey,
     setNotificationKey 
 } from './utility';
+import {
+    NOTIFICATION_DETAILS 
+} from './constants';
 
 export const clearLocalNotification = () => {
     return removeNotificationKey()
         .then(Notifications.cancelAllScheduledNotificationsAsync);
 }
 
-export const setLocalNotification = (title, body) => {
+export const setLocalNotificationI = () => {
+    setLocalNotification(
+        NOTIFICATION_DETAILS.title, 
+        NOTIFICATION_DETAILS.body
+    );
+}
+
+/**
+ * Private methods
+ */
+
+const createNotification = (title, body) => {
+    return {
+        title,
+        body,
+        ios: {
+            sound: true,
+        },
+        android: {
+            sound: true,
+            priority: "high",
+            sticky: false,
+            vibrate: true,
+        }
+    };
+}
+
+const setLocalNotification = (title, body) => {
     getNotificationKey()
         .then(JSON.parse)
         .then((data) => {
@@ -42,24 +72,4 @@ export const setLocalNotification = (title, body) => {
                     })
             }
         })
-}
-
-/**
- * Private methods
- */
-
-const createNotification = (title, body) => {
-    return {
-        title,
-        body,
-        ios: {
-            sound: true,
-        },
-        android: {
-            sound: true,
-            priority: "high",
-            sticky: false,
-            vibrate: true,
-        }
-    };
 }
