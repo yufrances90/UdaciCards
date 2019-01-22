@@ -12,8 +12,8 @@ import globalStyles from '../styles/styles';
 import { 
     getAllQuestionData,
     updateUserData,
-    clearLocalNotification,
-    setLocalNotification 
+    clearLocalNotificationU,
+    setLocalNotificationU 
 } from '../utils/utility';
 
 import Quiz from '../components/Quiz';
@@ -48,8 +48,8 @@ export default class PQuiz extends Component {
                 qids
             });
         }).then(() => updateUserData())
-        .then(clearLocalNotification)
-        .then(setLocalNotification);
+        .then(clearLocalNotificationU)
+        .then(setLocalNotificationU);
     }
 
     handleClickNextQuestion(event) {

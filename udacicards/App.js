@@ -4,13 +4,13 @@ import AppRouter from './pages/AppRouter';
 
 import { 
     generateAndSaveInitialData,
-    setLocalNotification 
+    setLocalNotificationU 
 } from './utils/utility';
 
 export default class App extends Component {
 
     componentDidMount() {
-        setLocalNotification();
+        setLocalNotificationU();
         generateAndSaveInitialData();
     }
     

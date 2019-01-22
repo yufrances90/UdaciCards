@@ -162,14 +162,14 @@ export const setNotificationKey = (valueObj) => {
     return saveItem(STORAGE_KEYS.NOTIFICATION_KEY, valueObj);
 } 
 
-export const setLocalNotification = () => {
+export const setLocalNotificationU = () => {
     setLocalNotification(
         NOTIFICATION_DETAILS.title, 
         NOTIFICATION_DETAILS.body
     );
 }
 
-export const clearLocalNotification = () => {
+export const clearLocalNotificationU = () => {
     clearLocalNotification();
 }
 
