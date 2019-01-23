@@ -17,6 +17,8 @@ export default class IndividualDeck extends Component {
             handleAddNewQuestion
         } = this.props;
 
+        const numCards = selectedDeck.qids.length;
+
         return (
             <View style={globalStyles.centeredContainer}>
                 <View>
@@ -24,7 +26,7 @@ export default class IndividualDeck extends Component {
                         {selectedDeck.title}
                     </Text>
                     <Text style={styles.deckDetail}>
-                        {selectedDeck.qids.length} cards
+                        {numCards} {numCards > 1 ? "Cards" : "Card"}
                     </Text>
                 </View>
                 <View>

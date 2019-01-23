@@ -1,5 +1,5 @@
 # UdaciCards
-A mobile application (Android or iOS - or both) that allows users to study collections of flashcards
+An iOS mobile application that allows users to study collections of flashcards
 
 ### To Run Application
 

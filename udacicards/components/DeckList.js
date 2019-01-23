@@ -24,7 +24,7 @@ export default class DeckList extends Component {
         } = this.props;
 
         if (!decks || Object.keys(decks) === 0) {
-            return <ActivityIndicator />
+            return alert("Error: No deck is found!");
         }
 
         return (

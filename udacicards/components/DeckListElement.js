@@ -13,6 +13,8 @@ export default class DeckListElement extends Component {
         
         const { deck, bounceValue } = this.props;
 
+        const numCards = deck.qids.length;
+
         return (
             <View style={globalStyles.deckElement}>
                 <Animated.Text
@@ -21,7 +23,7 @@ export default class DeckListElement extends Component {
                     {deck.title.toUpperCase()}
                 </Animated.Text>
                 <Text style={styles.deckDetails}>
-                    {deck.qids.length} Cards
+                    {numCards} {numCards > 1 ? "Cards" : "Card"}
                 </Text>
             </View>
         );
