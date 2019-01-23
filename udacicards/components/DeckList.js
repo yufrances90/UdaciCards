@@ -1,67 +1,59 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { 
     StyleSheet, 
     Text, 
     View,
     ScrollView,
-    TouchableOpacity,
-    ActivityIndicator
+    TouchableOpacity
 } from 'react-native';
 
 import globalStyles from '../styles/styles';
 
 import DeckListElement from '../components/DeckListElement';
 
-export default class DeckList extends Component {
-    
-    render() {
+const DeckList = ({ 
+    decks, 
+    handlePress,
+    handleAddNewDeck,
+    bounceValue 
+}) => {
+    return (
+        <View style={styles.container}>
+           <ScrollView>
+                <View>
+                    {Object.keys(decks).map(deck => {
+                        
+                        const deckObj = decks[deck];
 
-        const { 
-            decks,
-            handlePress,
-            handleAddNewDeck,
-            bounceValue
-        } = this.props;
-
-        if (!decks || Object.keys(decks) === 0) {
-            return alert("Error: No deck is found!");
-        }
-
-        return (
-            <View style={styles.container}>
-               <ScrollView>
-                    <View>
-                        {Object.keys(decks).map(deck => {
-                            
-                            const deckObj = decks[deck];
-
-                            return (
-                               <View id={deckObj.id} key={deckObj.id}>
-                                   <TouchableOpacity 
-                                        onPress={event => handlePress(event, deckObj)}
-                                    >
-                                        <DeckListElement 
-                                            key={deckObj.id} 
-                                            deck={deckObj}
-                                            bounceValue={bounceValue}
-                                        /> 
-                                </TouchableOpacity>
-                               </View>
-                            );
-                        })}
+                        return (
+                           <View id={deckObj.id} key={deckObj.id}>
+                               <TouchableOpacity 
+                                    onPress={event => handlePress(event, deckObj)}
+                                >
+                                    <DeckListElement 
+                                        key={deckObj.id} 
+                                        deck={deckObj}
+                                        bounceValue={bounceValue}
+                                    /> 
+                            </TouchableOpacity>
+                           </View>
+                        );
+                    })}
+                </View>
+                <TouchableOpacity
+                    onPress={handleAddNewDeck}
+                >
+                    <View style={styles.diffDeckElement}>
+                        <Text style={styles.diffDeckSmallTitle}>Add New Deck</Text>
                     </View>
-                    <TouchableOpacity
-                        onPress={handleAddNewDeck}
-                    >
-                        <View style={styles.diffDeckElement}>
-                            <Text style={styles.diffDeckSmallTitle}>Add New Deck</Text>
-                        </View>
-                    </TouchableOpacity>
-               </ScrollView>
-           </View>
-        );
-    }
+                </TouchableOpacity>
+           </ScrollView>
+       </View>
+    );
 }
+
+export default DeckList;
+
 
 const styles = StyleSheet.create({
     container: {
