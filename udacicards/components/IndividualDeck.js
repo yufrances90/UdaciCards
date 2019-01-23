@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { 
     StyleSheet, 
     Text, 
@@ -8,49 +8,47 @@ import {
 
 import globalStyles from '../styles/styles';
 
-export default class IndividualDeck extends Component {
-    render() {
+const IndividualDeck = ({
+    selectedDeck,
+    handleStartQuiz,
+    handleAddNewQuestion
+}) => {
 
-        const {
-            selectedDeck,
-            handleStartQuiz,
-            handleAddNewQuestion
-        } = this.props;
+    const numCards = selectedDeck.qids.length;
 
-        const numCards = selectedDeck.qids.length;
-
-        return (
-            <View style={globalStyles.centeredContainer}>
-                <View>
-                    <Text style={styles.deckTitle}>
-                        {selectedDeck.title}
-                    </Text>
-                    <Text style={styles.deckDetail}>
-                        {numCards} {numCards > 1 ? "Cards" : "Card"}
-                    </Text>
-                </View>
-                <View>
-                    <TouchableOpacity 
-                        style={styles.startBtn}
-                        onPress={handleStartQuiz}
-                    >
-                        <Text style={styles.startBtnText}>
-                            Start Quiz
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity 
-                        style={styles.addBtn}
-                        onPress={handleAddNewQuestion}
-                    >
-                        <Text style={styles.addBtnText}>
-                            Add New Question
-                        </Text>
-                    </TouchableOpacity>
-                </View>
+    return (
+        <View style={globalStyles.centeredContainer}>
+            <View>
+                <Text style={styles.deckTitle}>
+                    {selectedDeck.title}
+                </Text>
+                <Text style={styles.deckDetail}>
+                    {numCards} {numCards > 1 ? "Cards" : "Card"}
+                </Text>
             </View>
-        )
-    }
+            <View>
+                <TouchableOpacity 
+                    style={styles.startBtn}
+                    onPress={handleStartQuiz}
+                >
+                    <Text style={styles.startBtnText}>
+                        Start Quiz
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity 
+                    style={styles.addBtn}
+                    onPress={handleAddNewQuestion}
+                >
+                    <Text style={styles.addBtnText}>
+                        Add New Question
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    );
 }
+
+export default IndividualDeck;
 
 const styles = StyleSheet.create({
     deckTitle: {

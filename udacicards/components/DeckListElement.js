@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { 
     StyleSheet, 
     Text, 
@@ -8,27 +8,28 @@ import {
 
 import globalStyles from '../styles/styles';
 
-export default class DeckListElement extends Component {
-    render() {
-        
-        const { deck, bounceValue } = this.props;
+const DeckListElement = ({
+    deck,
+    bounceValue
+}) => {
 
-        const numCards = deck.qids.length;
+    const numCards = deck.qids.length;
 
-        return (
-            <View style={globalStyles.deckElement}>
-                <Animated.Text
-                    style={[globalStyles.deckSmallTitle, {transform: [{scale: bounceValue}]}]}
-                >
-                    {deck.title.toUpperCase()}
-                </Animated.Text>
-                <Text style={styles.deckDetails}>
-                    {numCards} {numCards > 1 ? "Cards" : "Card"}
-                </Text>
-            </View>
-        );
-    }
+    return (
+        <View style={globalStyles.deckElement}>
+            <Animated.Text
+                style={[globalStyles.deckSmallTitle, {transform: [{scale: bounceValue}]}]}
+            >
+                {deck.title.toUpperCase()}
+            </Animated.Text>
+            <Text style={styles.deckDetails}>
+                {numCards} {numCards > 1 ? "Cards" : "Card"}
+            </Text>
+        </View>
+    );
 }
+
+export default DeckListElement;
 
 const styles = StyleSheet.create({ 
     deckDetails: {
