@@ -27,6 +27,10 @@ export default class NewQuestionForm extends Component {
             answer 
         } = this.state;
 
+        if (question.length === 0 || answer.length === 0) {
+            return alert("Warning: Please fill in both question and answer!");
+        }
+
         this.props.handleCreateNewQuestion(
             {
                 question, 
@@ -39,6 +43,18 @@ export default class NewQuestionForm extends Component {
             question: '',
             answer: ''
         });
+    }
+
+    handleChangeText(text, isQuestion) {
+        if (isQuestion) {
+            this.setState({
+                question: text
+            });
+        } else {
+            this.setState({
+                answer: text
+            })
+        }
     }
 
     render() {
@@ -57,9 +73,7 @@ export default class NewQuestionForm extends Component {
                         autoCorrect={false}
                         autoCapitalize={"sentences"}
                         onChangeText={
-                            (text) => this.setState({
-                                question: text
-                            })
+                            (text) => this.handleChangeText(text, true)
                         }
                     />
                     <TextInput 
@@ -68,9 +82,7 @@ export default class NewQuestionForm extends Component {
                         autoCorrect={false}
                         autoCapitalize={"sentences"}
                         onChangeText={
-                            (text) => this.setState({
-                                answer: text
-                            })
+                            (text) => this.handleChangeText(text, false)
                         }
                     />
                     <TouchableOpacity

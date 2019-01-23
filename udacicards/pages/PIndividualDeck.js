@@ -57,7 +57,7 @@ export default class PIndividualDeck extends Component {
                 text: 'Continue',
                 onPress: () => this.props.navigation.navigate('QuizV', {
                     qids: selectedDeck.qids,
-                    deck: selectedDeck.title
+                    deck: selectedDeck
                 }),
               },
             ],

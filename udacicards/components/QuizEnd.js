@@ -35,8 +35,13 @@ export default class QuizEnd extends Component {
     }
 
     handleBackButtonClick(event) {
+
+        const { navigation } = this.props;
+
+        const deck = navigation.getParam("deck");
+
         AlertIOS.alert(
-            'Return to Deck List',
+            'Return to Home',
             'Are you sure?',
             [
               {
@@ -46,7 +51,9 @@ export default class QuizEnd extends Component {
               },
               {
                 text: 'Continue',
-                onPress: () => this.props.navigation.push("Home"),
+                onPress: () => navigation.push("IDeck", {
+                    deck
+                }),
               },
             ],
         );
@@ -69,7 +76,7 @@ export default class QuizEnd extends Component {
                 <View>
                     <TouchableOpacity
                         style={styles.restartBtn}
-                        onPress={this.handleRestartButtonClick.bind(this)}
+                        onPress={() => this.handleRestartButtonClick()}
                     >
                         <Text style={globalStyles.buttonText}>
                             Restart Quiz
@@ -77,7 +84,7 @@ export default class QuizEnd extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.backBtn}
-                        onPress={this.handleBackButtonClick.bind(this)}
+                        onPress={() => this.handleBackButtonClick()}
                     >
                         <Text style={globalStyles.buttonText}>
                             Back To Home

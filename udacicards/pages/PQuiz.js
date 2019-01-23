@@ -50,8 +50,8 @@ export default class PQuiz extends Component {
                 qids
             });
         }).then(() => updateUserData())
-        .then(clearLocalNotification)
-        .then(setLocalNotificationI);
+        .then(() => clearLocalNotification())
+        .then(() => setLocalNotificationI());
     }
 
     handleClickNextQuestion(event) {
@@ -121,7 +121,7 @@ export default class PQuiz extends Component {
         } = this.props;
 
         if (Object.keys(questions).length === 0) {
-            return <ActivityIndicator />
+            return <ActivityIndicator />;
         }
 
         const selectedQuestion = questions[qids[index]];

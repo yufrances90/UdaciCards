@@ -16,6 +16,10 @@ export default class PNewDeck extends Component {
 
     handleCreateNewDeck(deckTitle) {
 
+        if (deckTitle.length === 0) {
+            return alert("Warning: Please enter deck name!");
+        }
+
         const newDeck = createNewDeck(deckTitle);
 
         updateDeckData(newDeck).then(() => {
